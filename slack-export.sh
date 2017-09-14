@@ -16,10 +16,12 @@ read -p "Destination Directory (leave blank for default ~/Documents/slack-archiv
 DEST=${DEST:-~/Documents/slack-archive}
 
 mkdir -p ${DEST}
+
+rm -rf ${SLACKEXPORT} || true
 mkdir -p ${SLACKEXPORT}
 
-cd ${TEMP}
+cd ${SLACKEXPORT}
 
-curl -o slack-export.py https://raw.githubusercontent.com/brahaney/slack-export/master/slack-export.py
+curl -o slack-export.py https://gist.githubusercontent.com/brahaney/fa18124e9260410891948f82cfb6d3c5/raw/daf7bef4cf35a26d914247c76ba0f43bb0e8ede0/slack-export.py
 
 python slack-export.py ${SLACK_TOKEN} ${DEST}
