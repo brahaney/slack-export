@@ -72,6 +72,9 @@ def clean_messages(messages):
             cleaned_message["text"] = clean_text(message["text"])
         except KeyError:
             print("no text in this message?")
+        except TypeError:
+            print("TypeError on this:")
+            print(message)
         cleaned_messages.append(cleaned_message)
     return cleaned_messages
 
