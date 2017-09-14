@@ -1,6 +1,5 @@
 from slacker import Slacker
 import json
-from pprint import pprint
 import datetime
 import re
 import sys
