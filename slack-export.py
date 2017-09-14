@@ -45,7 +45,7 @@ def get_im_history(imid, mpim=False):
                     response = slack.im.history(imid, latest=latest).body
                 break
             except Exception as ex:
-                if attempt == 5:
+                if attempt == 4:
                     raise ex
                 else:
                     print("failed. trying again")
