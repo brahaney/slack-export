@@ -15,6 +15,11 @@ target_dir = sys.argv[2]
 if target_dir[-1] != "/":
     target_dir = target_dir + "/"
 
+stats = {
+    "conversations": 0,
+    "messages": 0
+}
+
 slack = Slacker(token)
 
 users = slack.users.list().body["members"]
@@ -50,6 +55,12 @@ def get_im_history(imid, mpim=False):
         if response["has_more"] is True:
             latest = response["messages"][-1]["ts"]
             continue
+        try:
+            stats["conversations"] += 1
+            stats["messages"] += len(messages)
+        except:
+            pass
+        
         return clean_messages(messages)
 
 def clean_messages(messages):
@@ -109,3 +120,7 @@ def get_all_messages():
                 f.write(json.dumps(im_history, default=date_handler, indent=4))
 
 get_all_messages()
+print("DONE!")
+print("========== STATS ==========")
+print("Unique Conversations :  {}".format(stats["conversations"]))
+print("Total Message Count  :  {}".format(stats["messages"]))
