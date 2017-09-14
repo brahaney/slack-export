@@ -57,7 +57,11 @@ def clean_messages(messages):
     for message in messages:
         cleaned_message = {}
         if "user" in message:
-            cleaned_message["user"] = users_dict[message["user"]]["name"]
+            try:
+                cleaned_message["user"] = users_dict[message["user"]]["name"]
+            except KeyError as e:
+                cleaned_message["user"] = message["user"]
+                print("unknown user id {}".format(message["user"]))
         else:
             try:
                 cleaned_message["user"] = bots_dict[message["bot_id"]]["name"]
