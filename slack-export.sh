@@ -2,7 +2,7 @@
 
 echo "Enter your Mac login password below to install pip"
 sudo easy_install pip
-pip install requests\>=2.13 slacker
+sudo -H pip install requests\>=2.13 slacker
 SLACKEXPORT=~/slack-export
 
 echo
