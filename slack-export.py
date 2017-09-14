@@ -56,7 +56,8 @@ def get_im_history(imid, mpim=False):
             latest = response["messages"][-1]["ts"]
             continue
         try:
-            stats["conversations"] += 1
+            if len(messages) > 0:
+                stats["conversations"] += 1
             stats["messages"] += len(messages)
         except:
             pass
