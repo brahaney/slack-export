@@ -22,6 +22,6 @@ mkdir -p ${SLACKEXPORT}
 
 cd ${SLACKEXPORT}
 
-curl -o slack-export.py https://gist.githubusercontent.com/brahaney/fa18124e9260410891948f82cfb6d3c5/raw/daf7bef4cf35a26d914247c76ba0f43bb0e8ede0/slack-export.py
+curl -o slack-export.py https://raw.githubusercontent.com/brahaney/slack-export/master/slack-export.py
 
 python slack-export.py ${SLACK_TOKEN} ${DEST}
