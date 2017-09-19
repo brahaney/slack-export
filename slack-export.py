@@ -107,8 +107,14 @@ def clean_text(text):
 def get_all_messages():
     ims = []
     for im in slack.im.list().body["ims"]:
-        ims.append({"name": users_dict[im["user"]]["name"], "id": im["id"], "mpim": False})
-    
+        try:
+            name = users_dict[im["user"]]["name"]
+        except KeyError as ex:
+            print("Error trying to resolve a slack user's name: %s", ex)
+            name = "missing_name"
+        user_id = im["id"]
+        ims.append({"name": name, "id": user_id, "mpim": False})
+
     for mpim in slack.mpim.list().body["groups"]:
         ims.append({"name": mpim["name"], "id": mpim["id"], "mpim": True})
 
